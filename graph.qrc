@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>tsinghua.bmp</file>
+        <file>Logo.png</file>
+    </qresource>
+</RCC>
