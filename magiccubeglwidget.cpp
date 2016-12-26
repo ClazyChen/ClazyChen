@@ -14,6 +14,7 @@
 #include <ctime>
 #include <QFileDialog>
 #include <fstream>
+#include "tester.h"
 
 #define HALF_EDGE_LENGTH 0.975f
 #define HALF_COLOR_LENGTH 0.9f
@@ -45,6 +46,7 @@ MagicCubeGlWidget::MagicCubeGlWidget(QWidget *parent) :
     FlashSpeedWhenUserOperate = 100;
     have_operated             = 0;
     starting                  = true;
+    tester                    = new Tester();
 
     SetFlashSpeed(FlashSpeedWhenUserOperate);
 #ifndef TEST
@@ -225,6 +227,7 @@ void MagicCubeGlWidget::keyPressEvent(QKeyEvent *event)
         break;
     case Qt::Key_F2:
         getMagicCubeForSolve();
+        qDebug() << tester ->runCheck();
         break;
     case Qt::Key_F3:
         ShowSpeedSet();
@@ -233,6 +236,7 @@ void MagicCubeGlWidget::keyPressEvent(QKeyEvent *event)
         RandomOperate();
         break;
     case Qt::Key_F5:
+        tester ->generateTestInput();
         ReadFromFile();
         break;
     case Qt::Key_Escape:

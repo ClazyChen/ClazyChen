@@ -38,6 +38,7 @@ class Rotation;
 class CubeColorSet;
 class RubicCubeSolver;
 class SetFlashSpeedWidget;
+class Tester;
 
 class MagicCubeGlWidget : public QGLWidget
 {
@@ -137,6 +138,7 @@ private:
     int have_operated;
 
     int changecolor_Czk_to_Wyf(easy_vector3 colorForChange);
+    Tester * tester;
 };
 
 #endif // MAGICCUBEGLWIDGET_H

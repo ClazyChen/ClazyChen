@@ -12,7 +12,7 @@ public:
 	void leftRotate();
 	void rightRotate();
 	void print();
-	void samplePrint();
+    void sampleprint(FILE *fout);
 	void read();
 	bool checkV();
 	bool operator == (const Surface &B) const {

@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     surface.cpp \
     universal.cpp \
     rubiccubesolver.cpp \
-    setflashspeedwidget.cpp
+    setflashspeedwidget.cpp \
+    tester.cpp
 
 HEADERS  += magiccubeglwidget.h \
     singlecube.h \
@@ -34,7 +35,8 @@ HEADERS  += magiccubeglwidget.h \
     surface.h \
     universal.h \
     rubiccubesolver.h \
-    setflashspeedwidget.h
+    setflashspeedwidget.h \
+    tester.h
 
 RESOURCES += \
     graph.qrc
