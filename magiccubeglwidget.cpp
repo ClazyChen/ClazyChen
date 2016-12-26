@@ -828,6 +828,10 @@ void MagicCubeGlWidget::getMagicCubeForSolve()
         default:    temp_clock = S_BLACK;   fout << 'X';break;
         }
         if (temp_method[i].size() == 2) fout << 'i';
+        if (i == temp_method_length - 1)
+            fout << "\n";
+        else
+            fout << " ";
         Solver ->method_for_Czk.push_back(temp_color * temp_clock);
         //qDebug() << QString::fromStdString(temp_method[i]) << Solver ->method_for_Czk[i];
     }
