@@ -6,18 +6,17 @@
 
 Tester::Tester()
 {
-    ;
 }
 
 void Tester::generateTestInput() {
     static MagicCube a;
-    for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < 1; ++i)
         a.randomRotate();
     FILE *fout = fopen("input.txt", "w");
     a.front.sampleprint(fout);
     a.back.sampleprint(fout);
-    a.left.sampleprint(fout);
     a.right.sampleprint(fout);
+    a.left.sampleprint(fout);
     a.up.sampleprint(fout);
     a.down.sampleprint(fout);
     fclose(fout);

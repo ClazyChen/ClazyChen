@@ -90,6 +90,7 @@ private:
     SingleCube *cube[3][3][3];//用来存储，指针指定对象后不发生变化
 
     SingleCube *cube_pointer_by_position[3][3][3];//用来指向某个位置的方格
+    SingleCube *whiteCubePosition;
 
     void pointer_change();
     /*

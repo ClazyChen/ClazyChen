@@ -80,6 +80,7 @@ MagicCubeGlWidget::MagicCubeGlWidget(QWidget *parent) :
             cube[0][i][j] ->colors.left = MCC_GREEN;
             cube[2][i][j] ->colors.right = MCC_BLUE;
         }
+    whiteCubePosition = cube_pointer_by_position[1][1][0];
 }
 
 MagicCubeGlWidget::~MagicCubeGlWidget()
@@ -88,7 +89,7 @@ MagicCubeGlWidget::~MagicCubeGlWidget()
 
 void MagicCubeGlWidget::initializeGL()
 {
-    glClearColor(0.8, 0.8, 0.8, 0.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
     glShadeModel(GL_SMOOTH);
 
     glClearDepth(1.0);
@@ -196,6 +197,7 @@ void MagicCubeGlWidget::paintGL()
 
 void MagicCubeGlWidget::StartGame()
 {
+    glClearColor(0.8, 0.8, 0.8, 0.0);
     starting = false;
     key_operation_on = true;
     selected_texture = bindTexture(QPixmap(":/image/tsinghua.bmp"));
@@ -344,6 +346,8 @@ void MagicCubeGlWidget::mousePressEvent(QMouseEvent *event)
 
 void MagicCubeGlWidget::mouseMoveEvent(QMouseEvent *event)
 {
+    if (starting)
+        return;
     if (rightbutton_pressed)
     {
         QPoint new_mouse_position = event ->pos() - temp_mouse_position;
@@ -446,57 +450,97 @@ void MagicCubeGlWidget::BuildCube(SingleCube *to_build)
         glColor3f(to_build ->colors.front.x,
                   to_build ->colors.front.y,
                   to_build ->colors.front.z);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][1][2])
+            glTexCoord2f(1.0f, 1.0f);
         glVertex3f(HALF_COLOR_LENGTH, HALF_COLOR_LENGTH, HALF_FLOAT_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][1][2])
+            glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-HALF_COLOR_LENGTH, HALF_COLOR_LENGTH, HALF_FLOAT_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][1][2])
+            glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-HALF_COLOR_LENGTH, -HALF_COLOR_LENGTH, HALF_FLOAT_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][1][2])
+            glTexCoord2f(1.0f, 0.0f);
         glVertex3f(HALF_COLOR_LENGTH, -HALF_COLOR_LENGTH, HALF_FLOAT_LENGTH);
 
         glColor3f(to_build ->colors.back.x,
                   to_build ->colors.back.y,
                   to_build ->colors.back.z);
-        if (to_build == cube_pointer_by_position[1][1][0])
-            glTexCoord2f(0.0f, 1.0f);
-        glVertex3f(HALF_COLOR_LENGTH, HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH);
-        if (to_build == cube_pointer_by_position[1][1][0])
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][1][0])
             glTexCoord2f(1.0f, 1.0f);
-        glVertex3f(-HALF_COLOR_LENGTH, HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH);
-        if (to_build == cube_pointer_by_position[1][1][0])
+        glVertex3f(HALF_COLOR_LENGTH, HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][1][0])
             glTexCoord2f(1.0f, 0.0f);
-        glVertex3f(-HALF_COLOR_LENGTH, -HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH);
-        if (to_build == cube_pointer_by_position[1][1][0])
+        glVertex3f(-HALF_COLOR_LENGTH, HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][1][0])
             glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(-HALF_COLOR_LENGTH, -HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][1][0])
+            glTexCoord2f(0.0f, 1.0f);
         glVertex3f(HALF_COLOR_LENGTH, -HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH);
 
         glColor3f(to_build ->colors.down.x,
                   to_build ->colors.down.y,
                   to_build ->colors.down.z);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][0][1])
+            glTexCoord2f(1.0f, 1.0f);
         glVertex3f(HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH, HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][0][1])
+            glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH, HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][0][1])
+            glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH, -HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][0][1])
+            glTexCoord2f(1.0f, 0.0f);
         glVertex3f(HALF_COLOR_LENGTH, -HALF_FLOAT_LENGTH, -HALF_COLOR_LENGTH);
 
         glColor3f(to_build ->colors.up.x,
                   to_build ->colors.up.y,
                   to_build ->colors.up.z);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][2][1])
+            glTexCoord2f(1.0f, 1.0f);
         glVertex3f(HALF_COLOR_LENGTH, HALF_FLOAT_LENGTH, HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][2][1])
+            glTexCoord2f(0.0f, 1.0f);
         glVertex3f(HALF_COLOR_LENGTH, HALF_FLOAT_LENGTH, -HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][2][1])
+            glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-HALF_COLOR_LENGTH, HALF_FLOAT_LENGTH, -HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[1][2][1])
+            glTexCoord2f(1.0f, 0.0f);
         glVertex3f(-HALF_COLOR_LENGTH, HALF_FLOAT_LENGTH, HALF_COLOR_LENGTH);
 
         glColor3f(to_build ->colors.left.x,
                   to_build ->colors.left.y,
                   to_build ->colors.left.z);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[0][1][1])
+            glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-HALF_FLOAT_LENGTH, HALF_COLOR_LENGTH, HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[0][1][1])
+            glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-HALF_FLOAT_LENGTH, HALF_COLOR_LENGTH, -HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[0][1][1])
+            glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-HALF_FLOAT_LENGTH, -HALF_COLOR_LENGTH, -HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[0][1][1])
+            glTexCoord2f(1.0f, 0.0f);
         glVertex3f(-HALF_FLOAT_LENGTH, -HALF_COLOR_LENGTH, HALF_COLOR_LENGTH);
 
         glColor3f(to_build ->colors.right.x,
                   to_build ->colors.right.y,
                   to_build ->colors.right.z);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[2][1][1])
+            glTexCoord2f(1.0f, 1.0f);
         glVertex3f(HALF_FLOAT_LENGTH, HALF_COLOR_LENGTH, HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[2][1][1])
+            glTexCoord2f(0.0f, 1.0f);
         glVertex3f(HALF_FLOAT_LENGTH, -HALF_COLOR_LENGTH, HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[2][1][1])
+            glTexCoord2f(0.0f, 0.0f);
         glVertex3f(HALF_FLOAT_LENGTH, -HALF_COLOR_LENGTH, -HALF_COLOR_LENGTH);
+        if (to_build == whiteCubePosition && whiteCubePosition == cube_pointer_by_position[2][1][1])
+            glTexCoord2f(1.0f, 0.0f);
         glVertex3f(HALF_FLOAT_LENGTH, HALF_COLOR_LENGTH, -HALF_COLOR_LENGTH);
     glEnd();
 }
@@ -981,12 +1025,19 @@ void MagicCubeGlWidget::ReadFromFile()
                 cube_pointer_by_position[j][2][i] ->colors.up = changecolor_Char_to_Czk(color[4][i][j]);
                 cube_pointer_by_position[j][0][2 - i] ->colors.down = changecolor_Char_to_Czk(color[5][i][j]);
             }
+        if (cube_pointer_by_position[1][1][2] ->colors.front == MCC_WHITE)
+            whiteCubePosition = cube_pointer_by_position[1][1][2];
+        if (cube_pointer_by_position[1][1][0] ->colors.back == MCC_WHITE)
+            whiteCubePosition = cube_pointer_by_position[1][1][0];
+        if (cube_pointer_by_position[1][0][1] ->colors.down == MCC_WHITE)
+            whiteCubePosition = cube_pointer_by_position[1][0][1];
+        if (cube_pointer_by_position[1][2][1] ->colors.up == MCC_WHITE)
+            whiteCubePosition = cube_pointer_by_position[1][2][1];
+        if (cube_pointer_by_position[0][1][1] ->colors.left == MCC_WHITE)
+            whiteCubePosition = cube_pointer_by_position[0][1][1];
+        if (cube_pointer_by_position[2][1][1] ->colors.right == MCC_WHITE)
+            whiteCubePosition = cube_pointer_by_position[2][1][1];
         fin.close();
         updateGL();
     }
 }
-
-
-
-
-
